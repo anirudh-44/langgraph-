@@ -36,7 +36,14 @@ if 'chat_threads' not in st.session_state:
 
 add_thread_id(st.session_state['thread_id'])
 
-CONFIG = {'configurable': {'thread_id': st.session_state['thread_id']}}
+#CONFIG = {'configurable': {'thread_id': st.session_state['thread_id']}}
+CONFIG = {
+        "configurable": {"thread_id": st.session_state["thread_id"]},
+        "metadata": {
+            "thread_id": st.session_state["thread_id"]
+        },
+        "run_name": "chat_turn",
+    }
 
 #*******************************SIDEBAR_UI*****************************************
 st.sidebar.title('LangGraph Chatbot')
