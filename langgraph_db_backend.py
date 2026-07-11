@@ -6,6 +6,7 @@ from langgraph.graph.message import add_messages
 from dotenv import load_dotenv
 from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
 import sqlite3
+from langsmith import traceable
 
 load_dotenv()
 
@@ -19,6 +20,7 @@ model = ChatHuggingFace(llm=llm)
 class ChatState(TypedDict):
     messages: Annotated[list[BaseMessage], add_messages]
 
+@traceable
 def chat_node(state: ChatState):
     messages = state['messages']
     response = model.invoke(messages)
